@@ -1,0 +1,28 @@
+{
+  "root": "apps/app-playground-e2e",
+  "sourceRoot": "apps/app-playground-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/app-playground-e2e/cypress.json",
+        "devServerTarget": "app-playground:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "app-playground:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/app-playground-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["app-playground"]
+}
