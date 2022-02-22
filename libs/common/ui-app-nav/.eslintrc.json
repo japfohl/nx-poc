@@ -1,5 +1,5 @@
 {
-  "extends": ["../../.eslintrc.json"],
+  "extends": ["../../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": ["joepfohl-nx-playground", "jp"],
+            "prefix": "joepfohl-nx-playground",
             "style": "kebab-case"
           }
         ]

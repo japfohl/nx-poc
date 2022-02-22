@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <h1>{{ title }}</h1>
+  <span class="toolbarSpacer"></span>
+  <ng-container *ngIf="loggedIn">
+    <button
+      aria-label="User menu button"
+      data-testid="app-nav-userMenuButton"
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+    >
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <div data-testid="app-nav-userName" mat-menu-item [disabled]="true">
+        {{ username }}
+      </div>
+    </mat-menu>
+  </ng-container>
+</mat-toolbar>
