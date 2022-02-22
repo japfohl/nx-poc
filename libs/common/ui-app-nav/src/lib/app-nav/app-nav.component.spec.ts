@@ -3,23 +3,26 @@ import {
   createComponentFactory,
   byRole,
   byTestId,
-  byText
 } from '@ngneat/spectator/jest';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HarnessLoader } from '@angular/cdk/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { AppNavComponent, AppNavComponentModule } from './app-nav.component';
-import exp = require('constants');
+import { MatMenuHarness } from '@angular/material/menu/testing';
 
 describe('AppNavComponent', () => {
+  // constants
   const userMenuButtonTestId = 'app-nav-userMenuButton';
-  const userNameTestId = 'app-nav-userName';
   const testTitle = 'Test App Title';
   const testUserName = 'Test User Person';
 
+  // test helpers
   const getUserMenuButton = (
     spectator: Spectator<AppNavComponent>
   ): Element | null => spectator.query(byTestId(userMenuButtonTestId));
 
   let spectator: Spectator<AppNavComponent>;
+  let loader: HarnessLoader;
 
   const createComponent = createComponentFactory({
     component: AppNavComponent,
@@ -27,41 +30,7 @@ describe('AppNavComponent', () => {
     declareComponent: false,
   });
 
-  it('creates', () => {
-    spectator = createComponent();
-    expect(spectator).toBeTruthy();
-  });
-
-  it('displays the app title', () => {
-    spectator = createComponent({
-      props: {
-        title: testTitle,
-      },
-    });
-
-    const heading = spectator.query(byRole('heading', { level: 1 }));
-
-    expect(heading).toExist();
-    expect(heading).toHaveText(testTitle);
-  });
-
-  it('only displays the user menu when logged in', () => {
-    spectator = createComponent({
-      props: {
-        title: testTitle,
-        loggedIn: true,
-      },
-    });
-
-    expect(getUserMenuButton(spectator)).toExist();
-
-    spectator.setInput({ loggedIn: false });
-    spectator.detectChanges();
-
-    expect(getUserMenuButton(spectator)).not.toExist();
-  });
-
-  it("displays the user's name in the menu", () => {
+  beforeEach(() => {
     spectator = createComponent({
       props: {
         title: testTitle,
@@ -70,14 +39,41 @@ describe('AppNavComponent', () => {
       },
     });
 
-    expect(getUserMenuButton(spectator)).toExist();
-    expect(spectator.query(byTestId(userNameTestId))).not.toExist();
+    loader = TestbedHarnessEnvironment.loader(spectator.fixture);
+  });
 
-    spectator.click(byTestId(userMenuButtonTestId));
+  it('creates', () => {
+    expect(spectator).toBeTruthy();
+  });
+
+  it('displays the app title', () => {
+    const heading = spectator.query(byRole('heading', { level: 1 }));
+
+    expect(heading).toExist();
+    expect(heading).toHaveText(testTitle);
+  });
+
+  it('only displays the user menu when logged in', () => {
+    expect(getUserMenuButton(spectator)).toExist();
+
+    spectator.setInput({ loggedIn: false });
     spectator.detectChanges();
 
-    const userNameMenuItem = spectator.query(byTestId(userNameTestId));
-    expect(userNameMenuItem).toExist();
-    expect(userNameMenuItem).toContainText(testUserName);
+    expect(getUserMenuButton(spectator)).not.toExist();
+  });
+
+  it("displays the user's name in the menu", async () => {
+    const menuHarness = await loader.getHarness(MatMenuHarness);
+    expect(await menuHarness.isOpen()).toBe(false);
+
+    spectator.click(byTestId(userMenuButtonTestId));
+    expect(await menuHarness.isOpen()).toBe(true);
+
+    const nameMenuItems = await menuHarness.getItems({ text: testUserName });
+    expect(nameMenuItems.length).toEqual(1);
+
+    const nameItem = nameMenuItems[0];
+    expect(await nameItem.isDisabled()).toBe(true);
+    expect(await nameItem.getText()).toBe(testUserName);
   });
 });
