@@ -10,4 +10,6 @@ export * from './lib/+state/auth.models';
 
 export * from './lib/auth-data-access.module';
 
+export * from './lib/auth.service';
+
 export { AuthActions, AuthFeature, AuthSelectors };
