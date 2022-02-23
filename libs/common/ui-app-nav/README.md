@@ -1,7 +1,16 @@
 # common-ui-app-nav
 
-This library was generated with [Nx](https://nx.dev).
+This is a ui component providing basic applicaiton header functionality. The component does the following:
+
+* Displays the application title.
+* When logged in displays a menu that does the following:
+  * Displays the name of the logged in user.
+  * Allows the logged in user to initate the logout action.
 
 ## Running unit tests
 
 Run `nx test common-ui-app-nav` to execute the unit tests.
+
+## Running Storybook
+
+Run `nx storybook common-ui-app-nav` to spin up the Storybook server.
