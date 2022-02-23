@@ -11,9 +11,17 @@
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <div data-testid="app-nav-userName" mat-menu-item [disabled]="true">
+      <div mat-menu-item [disabled]="true">
         {{ username }}
       </div>
+      <button
+        (click)="onSignout()"
+        data-testid="app-nav-signOutButton"
+        mat-menu-item
+      >
+        <mat-icon>logout</mat-icon>
+        <span>Sign out</span>
+      </button>
     </mat-menu>
   </ng-container>
 </mat-toolbar>

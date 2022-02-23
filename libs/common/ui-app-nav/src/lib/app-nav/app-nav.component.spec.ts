@@ -13,6 +13,7 @@ import { MatMenuHarness } from '@angular/material/menu/testing';
 describe('AppNavComponent', () => {
   // constants
   const userMenuButtonTestId = 'app-nav-userMenuButton';
+  const signOutButtonTestId = 'app-nav-signOutButton';
   const testTitle = 'Test App Title';
   const testUserName = 'Test User Person';
 
@@ -75,5 +76,15 @@ describe('AppNavComponent', () => {
     const nameItem = nameMenuItems[0];
     expect(await nameItem.isDisabled()).toBe(true);
     expect(await nameItem.getText()).toBe(testUserName);
+  });
+
+  it('emits a logout event when clicking the logout menu option', async () => {
+    let signOut = false;
+    spectator.output('signout').subscribe(() => (signOut = true));
+
+    const menuHarness = await loader.getHarness(MatMenuHarness);
+    await menuHarness.clickItem({ selector: `[data-testid="${signOutButtonTestId}"]` })
+
+    expect(signOut).toBe(true);
   });
 });

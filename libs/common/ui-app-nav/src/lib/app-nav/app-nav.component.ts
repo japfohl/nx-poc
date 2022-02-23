@@ -6,8 +6,10 @@ import { MatButtonModule } from '@angular/material/button';
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   NgModule,
+  Output,
 } from '@angular/core';
 
 @Component({
@@ -19,8 +21,12 @@ import {
 export class AppNavComponent {
   @Input() title!: string;
   @Input() loggedIn!: boolean;
-
   @Input() username?: string;
+  @Output() signout = new EventEmitter<void>();
+
+  onSignout(): void {
+    this.signout.emit();
+  }
 }
 
 @NgModule({
