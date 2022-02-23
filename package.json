@@ -44,6 +44,7 @@
     "@nrwl/storybook": "13.8.2",
     "@nrwl/tao": "13.8.2",
     "@nrwl/workspace": "13.8.2",
+    "@storybook/addon-actions": "~6.4.12",
     "@storybook/addon-essentials": "~6.4.12",
     "@storybook/angular": "~6.4.12",
     "@storybook/builder-webpack5": "~6.4.12",

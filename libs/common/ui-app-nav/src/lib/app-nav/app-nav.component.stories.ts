@@ -1,6 +1,7 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { action } from '@storybook/addon-actions';
 import { AppNavComponent, AppNavComponentModule } from './app-nav.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
   title: 'AppNavComponent',
@@ -8,18 +9,31 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [AppNavComponentModule, BrowserAnimationsModule],
-    })
+    }),
   ],
+  excludeStories: /.*Data$/,
 } as Meta<AppNavComponent>;
 
+export const actionsData = {
+  signout: action('signout'),
+};
+
 const Template: Story<AppNavComponent> = (args: AppNavComponent) => ({
-  props: args,
+  props: {
+    ...args,
+    signout: actionsData.signout,
+  }
 });
 
-
-export const Primary = Template.bind({});
-Primary.args = {
+export const LoggedIn = Template.bind({});
+LoggedIn.args = {
   title: 'Awesome App Title',
   loggedIn: true,
-  username: 'Test User'
-}
+  username: 'Test User',
+};
+
+export const LoggedOut = Template.bind({});
+LoggedOut.args = {
+  ...LoggedIn.args,
+  loggedIn: false,
+};
