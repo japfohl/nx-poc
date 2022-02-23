@@ -6,9 +6,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/common/ui-app-nav"
-      ],
+      "outputs": ["coverage/libs/common/ui-app-nav"],
       "options": {
         "jestConfig": "libs/common/ui-app-nav/jest.config.js",
         "passWithNoTests": true
@@ -41,9 +39,7 @@
     },
     "build-storybook": {
       "executor": "@nrwl/storybook:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "uiFramework": "@storybook/angular",
         "outputPath": "dist/storybook/common-ui-app-nav",
@@ -51,7 +47,9 @@
           "configFolder": "libs/common/ui-app-nav/.storybook"
         },
         "projectBuildConfig": "common-ui-app-nav:build-storybook",
-        "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"]
+        "styles": [
+          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+        ]
       },
       "configurations": {
         "ci": {
@@ -60,8 +58,5 @@
       }
     }
   },
-  "tags": [
-    "scope:common",
-    "type:ui"
-  ]
+  "tags": ["scope:common", "type:ui"]
 }

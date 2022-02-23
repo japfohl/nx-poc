@@ -17,6 +17,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@joepfohl/auth": ["libs/auth/data-access/src/index.ts"],
       "@joepfohl/ui-app-nav": ["libs/common/ui-app-nav/src/index.ts"]
     }
   },
