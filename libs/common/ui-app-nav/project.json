@@ -2,7 +2,7 @@
   "projectType": "library",
   "root": "libs/common/ui-app-nav",
   "sourceRoot": "libs/common/ui-app-nav/src",
-  "prefix": "jp",
+  "prefix": "ui",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",

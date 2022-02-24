@@ -2,7 +2,7 @@
   "projectType": "application",
   "root": "apps/app-playground",
   "sourceRoot": "apps/app-playground/src",
-  "prefix": "joepfohl-nx-playground",
+  "prefix": "nx-poc",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",

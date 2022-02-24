@@ -13,7 +13,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "joepfohlNxPlayground",
+            "prefix": "nxPoc",
             "style": "camelCase"
           }
         ],
@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": ["joepfohl-nx-playground", "jp"],
+            "prefix": ["nx-poc"],
             "style": "kebab-case"
           }
         ]
