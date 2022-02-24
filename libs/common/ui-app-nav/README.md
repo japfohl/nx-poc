@@ -6,6 +6,7 @@ This is a ui component providing basic applicaiton header functionality. The com
 * When logged in displays a menu that does the following:
   * Displays the name of the logged in user.
   * Allows the logged in user to initate the logout action.
+* When logged out allows a user to initiate the login process from a menu button in the top bar.
 
 ## Running unit tests
 
