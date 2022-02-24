@@ -14,6 +14,7 @@ describe('AppNavComponent', () => {
   // constants
   const userMenuButtonTestId = 'app-nav-userMenuButton';
   const signOutButtonTestId = 'app-nav-signOutButton';
+  const signInButtonTestId = 'app-nav-signInButton';
   const testTitle = 'Test App Title';
   const testUserName = 'Test User Person';
 
@@ -63,6 +64,20 @@ describe('AppNavComponent', () => {
     expect(getUserMenuButton(spectator)).not.toExist();
   });
 
+  it('allows the user to sign in when not logged in', () => {
+    let signin = false;
+    spectator.output('signin').subscribe(() => (signin = true));
+
+    expect(spectator.query(byTestId(signInButtonTestId))).not.toExist();
+    spectator.setInput({ loggedIn: false });
+    spectator.detectChanges();
+    expect(spectator.query(byTestId(signInButtonTestId))).toExist();
+
+    spectator.click(byTestId(signInButtonTestId));
+    spectator.detectChanges();
+    expect(signin).toBe(true);
+  });
+
   it("displays the user's name in the menu", async () => {
     const menuHarness = await loader.getHarness(MatMenuHarness);
     expect(await menuHarness.isOpen()).toBe(false);
@@ -83,7 +98,9 @@ describe('AppNavComponent', () => {
     spectator.output('signout').subscribe(() => (signOut = true));
 
     const menuHarness = await loader.getHarness(MatMenuHarness);
-    await menuHarness.clickItem({ selector: `[data-testid="${signOutButtonTestId}"]` })
+    await menuHarness.clickItem({
+      selector: `[data-testid="${signOutButtonTestId}"]`,
+    });
 
     expect(signOut).toBe(true);
   });

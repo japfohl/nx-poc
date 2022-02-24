@@ -23,9 +23,14 @@ export class AppNavComponent {
   @Input() loggedIn!: boolean;
   @Input() username?: string;
   @Output() signout = new EventEmitter<void>();
+  @Output() signin = new EventEmitter<void>();
 
   onSignout(): void {
     this.signout.emit();
+  }
+
+  onSignin(): void {
+    this.signin.emit();
   }
 }
 

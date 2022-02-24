@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <h1>{{ title }}</h1>
   <span class="toolbarSpacer"></span>
-  <ng-container *ngIf="loggedIn">
+  <ng-container *ngIf="loggedIn; else loginButton">
     <button
       aria-label="User menu button"
       data-testid="app-nav-userMenuButton"
@@ -24,4 +24,14 @@
       </button>
     </mat-menu>
   </ng-container>
+  <ng-template #loginButton>
+    <button
+      mat-icon-button
+      (click)="onSignin()"
+      data-testid="app-nav-signInButton"
+      aria-label="Sign in button"
+    >
+      <mat-icon>login</mat-icon>
+    </button>
+  </ng-template>
 </mat-toolbar>

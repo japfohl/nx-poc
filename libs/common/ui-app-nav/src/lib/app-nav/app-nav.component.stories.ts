@@ -16,12 +16,14 @@ export default {
 
 export const actionsData = {
   signout: action('signout'),
+  signin: action('signin')
 };
 
 const Template: Story<AppNavComponent> = (args: AppNavComponent) => ({
   props: {
     ...args,
     signout: actionsData.signout,
+    signin: actionsData.signin
   }
 });
 
