@@ -3,6 +3,8 @@
   "projects": {
     "app-playground": "apps/app-playground",
     "app-playground-e2e": "apps/app-playground-e2e",
-    "common-ui-app-nav": "libs/common/ui-app-nav"
+    "auth-data-access": "libs/auth/data-access",
+    "common-ui-app-nav": "libs/common/ui-app-nav",
+    "common-util-types": "libs/common/util-types"
   }
 }

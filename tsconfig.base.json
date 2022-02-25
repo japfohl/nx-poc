@@ -17,7 +17,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@common/ui-app-nav": ["libs/common/ui-app-nav/src/index.ts"]
+      "@nx-poc/auth-data-access-service": [
+        "libs/auth/data-access/src/index.ts"
+      ],
+      "@nx-poc/common-ui-app-nav": ["libs/common/ui-app-nav/src/index.ts"],
+      "@nx-poc/util-types": ["libs/common/util-types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

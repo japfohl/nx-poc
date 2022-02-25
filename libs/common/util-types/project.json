@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/common/util-types",
+  "sourceRoot": "libs/common/util-types/src",
+  "prefix": "nx-poc",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/common/util-types"],
+      "options": {
+        "jestConfig": "libs/common/util-types/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/common/util-types/src/**/*.ts",
+          "libs/common/util-types/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
